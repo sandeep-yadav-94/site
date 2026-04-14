@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Star,
@@ -24,6 +24,7 @@ import { toast } from 'sonner';
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const { addToCart } = useCart();
@@ -62,7 +63,7 @@ const ProductDetails = () => {
 
   const handleBuyNow = () => {
     addToCart(product, quantity);
-    window.location.href = '/checkout';
+    navigate('/checkout');
   };
 
   // Simulated multiple images
